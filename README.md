@@ -27,3 +27,7 @@ Website dilengkapi dengan sistem manajemen konten (CMS sederhana) sehingga admin
 - Menjadi portal informasi resmi sekolah.
 - Menyediakan dokumentasi kegiatan sekolah secara digital.
 - Menjadi bagian dari **portofolio pengembangan web**.
+
+## 🔗 Demo Website
+👉 [Klik di sini untuk melihat demo]
+https://arfan-code123.github.io/website-sma1/
