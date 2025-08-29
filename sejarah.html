@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SMAN 1 Contoh</title>
+  <link rel="stylesheet" href="Css.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <img src="sma.png" alt="Logo SMA Negeri 1 Contoh" style="max-width: 150px;">
+    <h1>SMA NEGERI 1 CONTOH</h1>
+
+    <!-- Tombol Toggle -->
+    <button class="menu-toggle">☰</button>
+
+    <!-- Navigasi -->
+<nav>
+  <ul class="main-menu">
+    <li><a href="index.html">BERANDA</a></li>
+    <li class="has-sub">
+      <a href="#">PROFIL</a>
+      <ul class="submenu">
+        <li><a href="sejarah.html">Sejarah</a></li>
+        <li><a href="visi.html">Visi & Misi</a></li>
+      </ul>
+    </li>
+
+    <li class="has-sub">
+      <a href="#">AKADEMIK</a>
+      <ul class="submenu">
+        <li><a href="kelas.html">Kelas</a></li>
+        <li><a href="silabus.html">Silabus</a></li>
+        <li><a href="materi.html">Materi</a></li>
+        <li><a href="mapel.html">Mapel</a></li>
+      </ul>
+    </li>
+
+    <li class="has-sub">
+      <a href="#">MEDIA</a>
+      <ul class="submenu">
+        <li><a href="album.html">Album Foto</a></li>
+        <li><a href="mading.html">Mading</a></li>
+      </ul>
+    </li>
+
+    <li class="has-sub">
+      <a href="#">DATA</a>
+      <ul class="submenu">
+        <li><a href="guru.html">Data Guru</a></li>
+        <li><a href="tata.html">Tata Usaha</a></li>
+        <li><a href="siswa.html">Data Siswa</a></li>
+      </ul>
+    </li>
+  <li><a href="kontak.html">KONTAK</a></li>
+  </ul>
+</nav>
+  </header>
+  
+    <section id="sejarah" class="section">
+    <h2>Sejarah Sekolah</h2>
+<p>SMA Negeri 1 Contoh didirikan pada tahun 1985 sebagai salah satu bentuk respon pemerintah terhadap kebutuhan pendidikan menengah atas yang semakin meningkat di wilayah tersebut. Pada awal pendiriannya, SMA Negeri 1 Contoh hanya memiliki tiga ruang kelas, satu ruang guru, dan satu ruang tata usaha yang dibangun di atas lahan sederhana hasil hibah dari tokoh masyarakat setempat. Jumlah siswa angkatan pertama hanya berjumlah 90 orang, didampingi oleh 8 orang guru dan 2 tenaga kependidikan. Seiring berjalannya waktu, SMA Negeri 1 Contoh mengalami perkembangan yang signifikan baik dari segi infrastruktur maupun mutu pendidikan. Pada pertengahan tahun 1990-an, sekolah ini mulai dikenal luas sebagai salah satu SMA unggulan di kabupaten, dengan tingkat kelulusan yang konsisten tinggi serta prestasi siswa di berbagai bidang, baik akademik maupun non-akademik.</p>
+
+ <p>Dalam perjalanannya, SMA Negeri 1 Contoh terus berkomitmen untuk meningkatkan kualitas layanan pendidikan. Hal ini diwujudkan dengan pembangunan fasilitas baru seperti laboratorium komputer, laboratorium IPA, perpustakaan digital, ruang multimedia, serta ruang kelas berbasis teknologi. Selain itu, sekolah juga membuka berbagai program ekstrakurikuler yang bertujuan mengembangkan minat dan bakat siswa di bidang seni, olahraga, sains, dan kepemimpinan.</p>
+
+<p>Transformasi pendidikan di SMA Negeri 1 Contoh semakin terasa sejak memasuki era digital. Sekolah mulai menerapkan sistem pembelajaran berbasis teknologi informasi, termasuk penggunaan Learning Management System (LMS) dan pembelajaran daring untuk mendukung proses belajar-mengajar yang lebih fleksibel dan adaptif.</p>
+
+<p>Hingga saat ini, SMA Negeri 1 Contoh telah meluluskan ribuan alumni yang tersebar di berbagai wilayah Indonesia dan mancanegara. Banyak di antara mereka yang telah berhasil menjadi pemimpin, profesional, akademisi, dan pengusaha yang berkontribusi bagi bangsa dan negara. Reputasi sekolah sebagai lembaga pendidikan yang berkarakter, berprestasi, dan berintegritas telah membawa SMA Negeri 1 Contoh menjadi pilihan utama masyarakat dalam melanjutkan pendidikan ke jenjang SMA.</p>
+
+<p>Dengan semangat “Membangun Generasi Cerdas dan Berkarakter”, SMA Negeri 1 Contoh terus melangkah maju, beradaptasi dengan perkembangan zaman, dan berkomitmen menjadi sekolah yang tidak hanya mencetak siswa berprestasi, tetapi juga membentuk insan yang berbudi pekerti luhur, tangguh, dan siap menghadapi tantangan global.</p>
+  </section>
+  
+    <!-- Berita -->
+  <section id="berita" class="section">
+    <h2>Berita Terbaru</h2>
+    <div id="berita-list">
+      <!-- Berita otomatis dari Firebase -->
+    </div>
+    
+    <h2>Berita Lainnya</h2>
+    <div id="berita-lainnya"></div>
+  </section>
+
+    <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 SMA Negeri 1 Contoh</p>
+  </footer>
+  
+    <!-- Lightbox overlay -->
+  <div id="lightbox" style="display:none; position:fixed; z-index:100; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.9); text-align:center;">
+    <span id="close-lightbox" style="position:absolute; top:20px; right:30px; color:white; font-size:40px; cursor:pointer;">&times;</span>
+    <img id="lightbox-img" style="max-width:90%; max-height:90%; margin-top:5%;">
+  </div>
+  
+  <!-- Panggil file JS -->
+<script type="module" src="firebase.js"></script>
+ <script src="script.js"></script>
+ 
+</body>
+</html>

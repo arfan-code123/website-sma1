@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SMAN 1 Contoh</title>
+  <link rel="stylesheet" href="Css.css" />
+</head>
+<body>
+  <!--Tempat Header -->
+  <div id="header"></div>
+
+    <section id="Kelas">
+    <h2>🏫 Kelas</h2>
+    
+  <p>SMA Negeri 1 Contoh memiliki tiga jenjang kelas, yaitu Kelas X, XI, dan XII. Setiap tingkat terdiri dari beberapa rombongan belajar (rombel) yang dibagi berdasarkan minat dan jurusan peserta didik. Mulai dari Kelas XI, siswa diarahkan untuk memilih jurusan sesuai minat dan potensi mereka, yakni jurusan Ilmu Pengetahuan Alam (IPA), Ilmu Pengetahuan Sosial (IPS), dan Bahasa.Pada tahun ajaran ini, SMA Negeri 1 Contoh menyelenggarakan total 18 rombel aktif, terdiri dari 6 kelas untuk setiap tingkatan. Seluruh ruang kelas dilengkapi dengan fasilitas pendukung pembelajaran modern, seperti LCD proyektor, papan tulis interaktif, pendingin ruangan (AC), serta akses Wi-Fi untuk mendukung kegiatan pembelajaran digital.</p>
+
+<p>Sistem pembelajaran di setiap kelas menerapkan pendekatan Kurikulum Merdeka yang mendorong siswa untuk aktif, kreatif, dan berpikir kritis. Selain itu, setiap kelas juga memiliki kegiatan pendampingan seperti program literasi, numerasi, dan karakter, yang dijalankan oleh wali kelas dan guru BK secara rutin.</p>
+
+<p>Kelas-kelas di SMA Negeri 1 Contoh tidak hanya menjadi ruang belajar formal, tetapi juga menjadi wadah pembentukan karakter, pengembangan sikap kolaboratif, dan penerapan nilai-nilai kebangsaan serta keagamaan yang menjadi bagian penting dari visi sekolah.</p>
+  </section>
+  
+  <!-- Berita -->
+  <section id="berita">
+    <h2>Berita Terbaru</h2>
+    <div id="berita-list">
+      <!-- Berita otomatis dari Firebase -->
+    </div>
+    
+    <h2>Berita Lainnya</h2>
+    <div id="berita-lainnya"></div>
+  </section>
+  
+    <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 SMA Negeri 1 Contoh</p>
+  </footer>
+  
+    <!-- Lightbox overlay -->
+  <div id="lightbox" style="display:none; position:fixed; z-index:100; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.9); text-align:center;">
+    <span id="close-lightbox" style="position:absolute; top:20px; right:30px; color:white; font-size:40px; cursor:pointer;">&times;</span>
+    <img id="lightbox-img" style="max-width:90%; max-height:90%; margin-top:5%;">
+  </div>
+  
+  <!-- Panggil file JS -->
+<script src="header.js"></script>
+<script type="module" src="firebase.js"></script>
+ <script src="script.js"></script>
+ 
+</body>
+</html>

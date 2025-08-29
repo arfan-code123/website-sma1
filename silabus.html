@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SMAN 1 Contoh</title>
+  <link rel="stylesheet" href="Css.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <img src="sma.png" alt="Logo SMA Negeri 1 Contoh" style="max-width: 150px;">
+    <h1>SMA NEGERI 1 CONTOH</h1>
+
+    <!-- Tombol Toggle -->
+    <button class="menu-toggle">☰</button>
+
+    <!-- Navigasi -->
+<nav>
+  <ul class="main-menu">
+   <li><a href="index.html">BERANDA</a></li>
+    <li class="has-sub">
+      <a href="#">PROFIL</a>
+      <ul class="submenu">
+        <li><a href="sejarah.html">Sejarah</a></li>
+        <li><a href="visi.html">Visi & Misi</a></li>
+      </ul>
+    </li>
+
+    <li class="has-sub">
+      <a href="#">AKADEMIK</a>
+      <ul class="submenu">
+        <li><a href="kelas.html">Kelas</a></li>
+        <li><a href="silabus.html">Silabus</a></li>
+        <li><a href="materi.html">Materi</a></li>
+        <li><a href="mapel.html">Mapel</a></li>
+      </ul>
+    </li>
+
+    <li class="has-sub">
+      <a href="#">MEDIA</a>
+      <ul class="submenu">
+        <li><a href="album.html">Album Foto</a></li>
+        <li><a href="mading.html">Mading</a></li>
+      </ul>
+    </li>
+
+    <li class="has-sub">
+      <a href="#">DATA</a>
+      <ul class="submenu">
+        <li><a href="guru.html">Data Guru</a></li>
+        <li><a href="tata.html">Tata Usaha</a></li>
+        <li><a href="siswa.html">Data Siswa</a></li>
+      </ul>
+    </li>
+
+    <li><a href="#kontak">KONTAK</a></li>
+  </ul>
+</nav>
+  </header>
+  
+    <section id="Silabus" class="section">
+   <h2>Silabus Sekolah</h2>
+<p>SMA Negeri 1 Contoh menyusun silabus pembelajaran berdasarkan Kurikulum Merdeka yang ditetapkan oleh Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi Republik Indonesia. Silabus dirancang sebagai acuan utama dalam pelaksanaan pembelajaran di setiap mata pelajaran, dengan mempertimbangkan kompetensi dasar, capaian pembelajaran, serta karakteristik peserta didik.</p>
+
+<p>Silabus mencakup mata pelajaran umum seperti Bahasa Indonesia, Bahasa Inggris, Matematika, Sejarah, Pendidikan Pancasila dan Kewarganegaraan (PPKn), serta Pendidikan Agama. Selain itu, terdapat mata pelajaran peminatan sesuai jurusan seperti Fisika, Kimia, Biologi, Ekonomi, Sosiologi, Geografi, dan Bahasa Asing (Jepang, Jerman, atau Arab, tergantung ketersediaan guru).</p>
+
+<p>Setiap silabus disusun untuk memuat tujuan pembelajaran, materi pokok, kegiatan pembelajaran, metode, penilaian, dan penguatan profil pelajar Pancasila. SMA Negeri 1 Contoh juga menerapkan pendekatan berbasis projek (Project Based Learning) serta pembelajaran diferensiasi guna mengakomodasi kebutuhan dan minat belajar siswa yang beragam.</p>
+
+<p>Dengan silabus yang terstruktur dan adaptif, SMA Negeri 1 Contoh berkomitmen untuk menciptakan proses pembelajaran yang bermakna, menantang, dan relevan dengan perkembangan zaman serta dunia kerja. Silabus diperbarui secara berkala sesuai kebijakan kurikulum nasional dan hasil evaluasi internal sekolah.</p>
+<p>
+Lihat silabus per mata pelajaran:  
+<ul>
+  <li><a href="dokumen/silabus-matematika.pdf" target="_blank">Silabus Matematika</a></li>
+  <li><a href="dokumen/silabus-bahasa-indonesia.pdf" target="_blank">Silabus Bahasa Indonesia</a></li>
+  <li><a href="dokumen/silabus-biologi.pdf" target="_blank">Silabus Biologi</a></li>
+  <!-- dan seterusnya -->
+</ul>
+</p>
+  </section>
+  
+  <!-- Berita -->
+  <section id="berita" class="section">
+    <h2>Berita Terbaru</h2>
+    <div id="berita-list">
+      <!-- Berita otomatis dari Firebase -->
+    </div>
+    
+    <h2>Berita Lainnya</h2>
+    <div id="berita-lainnya"></div>
+  </section>
+  
+    <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 SMA Negeri 1 Contoh</p>
+  </footer>
+  
+    <!-- Lightbox overlay -->
+  <div id="lightbox" style="display:none; position:fixed; z-index:100; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.9); text-align:center;">
+    <span id="close-lightbox" style="position:absolute; top:20px; right:30px; color:white; font-size:40px; cursor:pointer;">&times;</span>
+    <img id="lightbox-img" style="max-width:90%; max-height:90%; margin-top:5%;">
+  </div>
+  
+  <!-- Panggil file JS -->
+<script type="module" src="firebase.js"></script>
+ <script src="script.js"></script>
+ 
+</body>
+</html>

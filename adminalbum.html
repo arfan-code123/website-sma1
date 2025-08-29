@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Album Foto</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  
+    <!-- Navigasi Admin -->
+<li><a href="index.html">BERANDA</a></li>
+<nav style="background:#003366; padding:10px; text-align:center;">
+  <a href="admin.html" style="color:white; margin-right:20px; font-weight:bold;">⬆️ Upload Berita</a>
+  <a href="berita.html" style="color:white; margin-right:20px; font-weight:bold;">📄 Daftar Berita</a>
+  <a href="adminalbum.html" style="color:white; margin-right:20px; font-weight:bold;">⬆️ Upload Album</a>
+  <a href="login.html" style="color:white; font-weight:bold;">🚪 Logout</a>
+</nav>
+
+<h2>Tambah Foto Album</h2>
+<form id="albumForm">
+  <label>Judul Foto:</label><br>
+  <input type="text" name="judul" required><br><br>
+
+  <label>Pilih Gambar:</label><br>
+  <input type="file" id="gambarFile" accept="image/*" required><br><br>
+
+  <button type="submit">Upload Foto</button>
+</form>
+
+<p id="msgStatus"></p>
+
+<h2>Daftar Album</h2>
+<table id="albumTable" border="1" cellspacing="0" cellpadding="5">
+  <thead>
+    <tr>
+      <th>Preview</th>
+      <th>Judul</th>
+      <th>Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Daftar album akan muncul di sini -->
+  </tbody>
+</table>
+
+<!-- Firebase -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import { 
+  getDatabase, ref, onValue, push, set, remove, update 
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAQEc-Id9673vKbOpo9WtYLXbjde21fCkE",
+  authDomain: "sma-1-contoh.firebaseapp.com",
+  databaseURL: "https://sma-1-contoh-default-rtdb.firebaseio.com/",
+  projectId: "sma-1-contoh",
+  storageBucket: "sma-1-contoh.appspot.com",
+  messagingSenderId: "343871913363",
+  appId: "1:343871913363:web:6249de249ab753b8b0fc66",
+  measurementId: "G-X6ZL5ETZ4N"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const albumForm = document.getElementById('albumForm');
+const albumTableBody = document.querySelector('#albumTable tbody');
+const msgStatus = document.getElementById('msgStatus');
+
+// Submit form upload foto
+albumForm.addEventListener('submit', async function(e){
+  e.preventDefault();
+  const judul = albumForm.judul.value;
+  const file = document.getElementById('gambarFile').files[0];
+  if(!file) return alert("Pilih file dulu");
+
+  // Upload ke Cloudinary
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", "my_prest"); // ganti dengan preset kamu
+  const cloudName = "doxlp6bbz"; // ganti dengan cloud name kamu
+  const url = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
+
+  try {
+    const res = await fetch(url, { method: "POST", body: formData });
+    const data = await res.json();
+    const gambarURL = data.secure_url;
+
+    // Simpan ke Firebase
+    const albumRef = ref(db, 'album');
+    const newAlbumRef = push(albumRef);
+    await set(newAlbumRef, { judul: judul, url: gambarURL });
+
+    msgStatus.textContent = "Foto berhasil diupload!";
+    albumForm.reset();
+  } catch(err) {
+    console.error(err);
+    msgStatus.textContent = "Terjadi kesalahan upload!";
+  }
+});
+
+// Load daftar album dari Firebase
+const albumRef = ref(db, 'album');
+onValue(albumRef, (snapshot) => {
+  albumTableBody.innerHTML = '';
+  const data = snapshot.val();
+  if(data){
+    Object.keys(data).forEach(key => {
+      const item = data[key];
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><img src="${item.url}" alt="${item.judul}" style="max-width:100px; height:auto;"></td>
+        <td contenteditable="true">${item.judul}</td>
+        <td>
+          <button onclick="hapusAlbum('${key}')">Hapus</button>
+          <button onclick="simpanEdit('${key}', this)">Simpan Edit</button>
+        </td>
+      `;
+      albumTableBody.appendChild(tr);
+    });
+  }
+});
+
+// Hapus album
+window.hapusAlbum = function(key){
+  if(confirm("Hapus foto ini?")){
+    const delRef = ref(db, 'album/' + key);
+    remove(delRef);
+  }
+}
+
+// Simpan edit judul
+window.simpanEdit = function(key, btn){
+  const tr = btn.parentElement.parentElement;
+  const judulBaru = tr.children[1].textContent.trim();
+  const editRef = ref(db, 'album/' + key);
+  update(editRef, { judul: judulBaru });
+  alert("Judul berhasil diupdate");
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,253 @@
+/* ========== RESET & DASAR ========== */
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background: #f5f5f5;
+}
+
+/* ========== HEADER ========== */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #003366;
+  color: #fff;
+  padding: 0.5em 15px;
+  gap: 10px;
+  position: relative;
+}
+header img { height: 80px; }
+header h1 { font-size: 1.6rem; margin: 0; padding-left: 6px; }
+
+/* ========== MENU TOGGLE MOBILE ========== */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+/* ========== NAVIGASI ========== */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+nav ul li { position: relative; }
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 15px;
+  display: block;
+}
+nav ul li a:hover { background: #004080; border-radius: 4px; }
+
+/* ========== DROPDOWN / SUBMENU ========== */
+nav ul li.has-sub::after {
+  content: "▾";
+  float: right;
+  margin-left: 8px;
+  font-size: 12px;
+}
+nav ul li.has-sub.open::after { content: "▴"; }
+.submenu { display: none; background: #f4f4f4; list-style: none; margin: 0; padding: 0; }
+.has-sub.open .submenu { display: block; }
+.submenu li a {
+  display: block;
+  padding: 12px 40px;
+  background: #e9e9e9;
+  color: #333;
+  text-decoration: none;
+}
+.submenu li a:hover { background: #ccc; }
+
+/* ========== RESPONSIVE NAVIGATION ========== */
+@media(max-width: 768px){
+  .menu-toggle { display: block; }
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background: #005599;
+    position: absolute;
+    top: 68px;
+    right: 15px;
+    width: 240px;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    z-index: 50;
+  }
+  nav ul.active { display: flex; }
+  nav ul li.has-sub .submenu { position: static; background: #0066aa; margin-top: 5px; }
+  nav ul li.has-sub.open .submenu { display: block; }
+}
+
+/* ========== ALBUM SLIDESHOW ========== */
+.album-slideshow-container {
+  position: relative;
+  max-width: 900px;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+.album-slide { display: none; position: relative; }
+.album-slide img { width: 100%; height: auto; display: block; border-radius: 6px; cursor: pointer; }
+.fade { animation-name: fade; animation-duration: 1s; }
+@keyframes fade { from {opacity: .4} to {opacity: 1} }
+
+/* Tombol navigasi album */
+.prev-album, .next-album {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  background-color: rgba(0,0,0,0.4);
+  border-radius: 50%;
+  user-select: none;
+  z-index: 10;
+  text-align: center;
+}
+.prev-album { left: 10px; }
+.next-album { right: 10px; }
+.prev-album:hover, .next-album:hover { background-color: rgba(0,0,0,0.7); }
+
+.section h2 {
+    background-color: #f0f0f0;
+  color: #007BFF;
+  padding: 15px 25px;
+  border-left: 30px solid #007BFF;
+  border-radius: 5px;
+  font-size: 1.3em;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin: 30px auto;
+  max-width: 500px;
+}
+
+
+/* === SUB JUDUL LIST BERITA LAINNYA === */
+#berita-lainnya-list .berita-lainnya-card {
+  background: #fff;
+  margin: 8px 0;
+  padding: 12px 15px;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  transition: all 0.3s ease;
+}
+
+#berita-lainnya-list .berita-lainnya-card a {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+  display: block;
+  line-height: 1.4em;
+}
+
+#berita-lainnya-list .berita-lainnya-card:hover {
+  background: #f9f9ff;
+  border-color: #007BFF;
+}
+
+#berita-lainnya-list .berita-lainnya-card a:hover {
+  color: #007BFF;
+}
+
+/* ========== LIGHTBOX ========== */
+#lightbox { display:none; position:fixed; z-index:100; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.9); text-align:center; }
+#lightbox img { max-width:90%; max-height:90%; margin-top:5%; border-radius:6px; }
+#close-lightbox { position:absolute; top:20px; right:30px; color:white; font-size:40px; cursor:pointer; }
+
+/* ========== KONTEN UTAMA ========== */
+section {
+  padding: 20px;
+  background: white;
+  margin: 10px auto;
+  max-width: 900px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  border-radius: 6px;
+}
+.foto-kepsek { width: 350px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+
+/* ========== FOOTER ========== */
+footer {
+  background: #003366;
+  color: white;
+  text-align: center;
+  padding: 1em 0;
+  margin-top: 20px;
+}
+footer a { color: #ccc; text-decoration: underline; }
+
+/* ========== FORM ======= */
+form input, form textarea, form button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+form button {
+  background: #0066aa;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+form button:hover { background: #0056b3; }
+
+#data-siswa {
+  padding: 20px;
+  background: #f9f9f9;
+}
+
+.tabel-siswa {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  margin-top: 15px;
+}
+
+.tabel-siswa th, 
+.tabel-siswa td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.tabel-siswa th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.subtotal {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+.grand-total {
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+}
+

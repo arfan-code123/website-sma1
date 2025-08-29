@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SMAN 1 Contoh</title>
+  <link rel="stylesheet" href="Css.css" />
+</head>
+<body>
+  <!-- Tempat Header -->
+  <div id="header"></div>
+
+   <section id="Data Guru" class="section">
+    <h2>Data Guru</h2>
+     <div class="guru-container">
+      <div class="guru-card">
+      <img src="gurul1.jpg" alt="Bapak Ahmad" class="foto-kepsek">
+      <h3>Ahmad Jaelani, S.Pd</h3>
+      <p>Guru Matematika</p>
+    </div>
+
+    <div class="guru-card">
+      <img src="gurup1.jpg" alt="Ibu Siti" class="foto-kepsek">
+      <h3>Titiek, S.Pd</h3>
+      <p>Guru Bahasa Indonesia</p>
+    </div>
+
+    <div class="guru-card">
+      <img src="amran.jpg" alt="Bapak Joko" class="foto-kepsek">
+      <h3>Amran, S.Pd</h3>
+      <p>Guru IPA</p>
+    </div>
+  </div>
+  
+      <div class="guru-card">
+      <img src="gurul2.jpg" alt="Bapak Joko" class="foto-kepsek">
+      <h3>Bapak Joko</h3>
+      <p>Penjas</p>
+    </div>
+  </div>
+  
+   <div class="guru-card">
+  <img src="gurup2.jpg" alt="Bapak Joko" class="foto-kepsek">
+  <h3>Ibu Siti S.Pd</h3>
+    <p>Biologi</p>
+    </div>
+  </div>
+  
+  <div class="guru-card">
+ <img src="gurul3.jpg" alt="Bapak Joko" class="foto-kepsek">
+      <h3>Supardi, S.Pd</h3>
+      <p>Guru Kimka</p>
+    </div>
+  </div>
+  
+      <div class="guru-card">
+      <img src="gurup3.jpg" alt="Bapak Joko" class="foto-kepsek">
+      <h3>Sumarni, S.Pd</h3>
+      <p>Guru Kimia</p>
+    </div>
+  </div>
+  
+      <div class="guru-card">
+      <img src="gurul4.jpg" alt="Bapak Joko" class="foto-kepsek">
+      <h3>Sudirman, S.Pd</h3>
+      <p>Guru IPA</p>
+    </div>
+  </div>
+  
+      <div class="guru-card">
+      <img src="gurup4.jpg" alt="Bapak Joko" class="foto-kepsek">
+      <h3>Aulia, S.Pd</h3>
+      <p>Guru BK</p>
+    </div>
+  </div>
+  
+</section>
+  
+  <!-- Berita -->
+  <section id="berita">
+    <h2>Berita Terbaru</h2>
+    <div id="berita-list">
+      <!-- Berita otomatis dari Firebase -->
+    </div>
+    
+    <h2>Berita Lainnya</h2>
+    <div id="berita-lainnya"></div>
+  </section>
+  
+    <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 SMA Negeri 1 Contoh</p>
+  </footer>
+  
+    <!-- Lightbox overlay -->
+  <div id="lightbox" style="display:none; position:fixed; z-index:100; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.9); text-align:center;">
+    <span id="close-lightbox" style="position:absolute; top:20px; right:30px; color:white; font-size:40px; cursor:pointer;">&times;</span>
+    <img id="lightbox-img" style="max-width:90%; max-height:90%; margin-top:5%;">
+  </div>
+  
+  <!-- Panggil file JS -->
+<script src="header.js"></script>
+<script type="module" src="firebase.js"></script>
+ <script src="script.js"></script>
+ 
+</body>
+</html>

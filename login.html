@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Admin</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="login-box">
+    <h2>Login Admin</h2>
+    <form id="loginForm">
+      <label for="email">Email</label>
+      <input type="email" id="email" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" required>
+
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
+
+    // Konfigurasi Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyAQEc-Id9673vKbOpo9WtYLXbjde21fCkE",
+      authDomain: "sma-1-contoh.firebaseapp.com",
+      projectId: "sma-1-contoh",
+      storageBucket: "sma-1-contoh.appspot.com",
+      messagingSenderId: "343871913363",
+      appId: "1:343871913363:web:6249de249ab753b8b0fc66",
+      measurementId: "G-X6ZL5ETZ4N"
+    };
+
+    // Inisialisasi Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
+
+    // Tangani login
+    const form = document.getElementById("loginForm");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Login sukses
+          alert("Login berhasil, selamat datang admin!");
+          window.location.href = "admin.html"; // arahkan ke halaman admin
+        })
+        .catch((error) => {
+          alert("Login gagal: " + error.message);
+        });
+    });
+  </script>
+</body>
+</html>

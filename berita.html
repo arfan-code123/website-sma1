@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar Berita</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  
+  
+  <!-- Navigasi Admin -->
+<li><a href="index.html">BERANDA</a></li>
+<nav style="background:#003366; padding:10px; text-align:center;">
+  <a href="admin.html" style="color:white; margin-right:20px; font-weight:bold;">⬆️ Upload Berita</a>
+  <a href="berita.html" style="color:white; margin-right:20px; font-weight:bold;">📄 Daftar Berita</a>
+    <a href="adminalbum.html" style="color:white; margin-right:20px; font-weight:bold;">⬆️ Upload Album</a>
+  <a href="login.html" style="color:white; font-weight:bold;">🚪 Logout</a>
+</nav>
+
+  <h2>Daftar Berita</h2>
+  <div id="beritaList"></div>
+
+  <!-- Modal Edit -->
+  <div id="editModal" style="display:none; position:fixed; top:20%; left:30%; background:#fff; padding:20px; border:1px solid #ccc; z-index:1000;">
+    <h3>Edit Berita</h3>
+    <form id="editForm">
+      <input type="hidden" id="editId">
+      <label>Judul:</label><br>
+      <input type="text" id="editJudul" required><br><br>
+      
+      
+      <label>Isi:</label><br>
+      <textarea id="editIsi" required></textarea><br><br>
+
+      <label>Gambar Lama:</label><br>
+      <img id="editPreview" src="" style="max-width:150px; display:block; margin-bottom:10px;">
+
+      <label>Ganti Gambar:</label><br>
+      <input type="file" id="editGambar" accept="image/*"><br><br>
+
+      <button type="submit">Simpan</button>
+      <button type="button" onclick="closeModal()">Batal</button>
+    </form>
+  </div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+  import { getDatabase, ref, onValue, update, remove } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+
+  // 🔹 Config Firebase Realtime Database
+  const firebaseConfig = {
+    apiKey: "AIzaSyAQEc-Id9673vKbOpo9WtYLXbjde21fCkE",
+    authDomain: "sma-1-contoh.firebaseapp.com",
+    databaseURL: "https://sma-1-contoh-default-rtdb.firebaseio.com/",
+    projectId: "sma-1-contoh",
+    storageBucket: "sma-1-contoh.appspot.com",
+    messagingSenderId: "343871913363",
+    appId: "1:343871913363:web:6249de249ab753b8b0fc66",
+    measurementId: "G-X6ZL5ETZ4N"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  // 🔹 Cloudinary Config
+  const cloudName = "doxlp6bbz"; 
+  const unsignedPreset = "my_preset"; // ganti sesuai upload preset Anda
+
+  const beritaList = document.getElementById("beritaList");
+
+  // Load semua berita
+  function loadBerita() {
+    const beritaRef = ref(db, "berita");
+    onValue(beritaRef, snapshot => {
+      beritaList.innerHTML = "";
+      const data = snapshot.val();
+      if(data) {
+        Object.keys(data).reverse().forEach(key => {
+          const item = data[key];
+          beritaList.innerHTML += `
+            <div>
+              <h3>${item.judul}</h3>
+              <p>${item.isi}</p>
+              ${item.gambar ? `<img src="${item.gambar}" width="150">` : ""}
+              <button onclick="editBerita('${key}')">Edit</button>
+              <button onclick="hapusBerita('${key}')">Hapus</button>
+              <hr>
+            </div>
+          `;
+        });
+      }
+    });
+  }
+
+  // Hapus berita
+  window.hapusBerita = function(id) {
+    if(confirm("Yakin mau hapus berita ini?")) {
+      remove(ref(db, "berita/" + id));
+      alert("✅ Berita berhasil dihapus!");
+    }
+  }
+
+  // Edit berita (tampilkan modal)
+  window.editBerita = function(id) {
+    const beritaRef = ref(db, "berita/" + id);
+    onValue(beritaRef, snapshot => {
+      const item = snapshot.val();
+      document.getElementById("editId").value = id;
+      document.getElementById("editJudul").value = item.judul;
+      document.getElementById("editIsi").value = item.isi;
+      document.getElementById("editPreview").src = item.gambar || "";
+      document.getElementById("editModal").style.display = "block";
+    }, { onlyOnce: true });
+  }
+
+  window.closeModal = function() {
+    document.getElementById("editModal").style.display = "none";
+  }
+
+  // Simpan hasil edit
+  document.getElementById("editForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const id = document.getElementById("editId").value;
+    const judul = document.getElementById("editJudul").value.trim();
+    const isi = document.getElementById("editIsi").value.trim();
+    const file = document.getElementById("editGambar").files[0];
+    let mediaUrl = document.getElementById("editPreview").src;
+
+    try {
+      if(file) {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", unsignedPreset);
+
+        const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+          method: "POST",
+          body: formData
+        });
+
+        const data = await res.json();
+        if(data.secure_url) mediaUrl = data.secure_url;
+      }
+
+      await update(ref(db, "berita/" + id), {
+        judul: judul,
+        isi: isi,
+        gambar: mediaUrl,
+        waktu: new Date().toISOString()
+      });
+
+      alert("✅ Berita berhasil diperbarui!");
+      closeModal();
+    } catch(err) {
+      console.error("❌ Gagal update:", err);
+      alert("Gagal update berita!");
+    }
+  });
+
+  loadBerita();
+</script>
+</body>
+</html>

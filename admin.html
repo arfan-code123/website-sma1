@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Posting Berita</title>
+ <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <!-- Navigasi Admin -->
+ <li><a href="index.html">BERANDA</a></li>
+<nav style="background:#003366; padding:10px; text-align:center;">
+  <a href="admin.html" style="color:white; margin-right:20px; font-weight:bold;">⬆️ Upload Berita</a>
+  <a href="berita.html" style="color:white; margin-right:20px; font-weight:bold;">📄 Daftar Berita</a>
+  <a href="adminalbum.html" style="color:white; margin-right:20px; font-weight:bold;">⬆️ Upload Album</a>
+  <a href="login.html" style="color:white; font-weight:bold;">🚪 Logout</a>
+
+</nav>
+
+  <h2>Posting Berita Baru</h2>
+  <form id="formBerita">
+    <label for="judul">Judul:</label><br>
+    <input type="text" id="judul" name="judul" required><br><br>
+
+    <label for="isi">Isi Berita:</label><br>
+    <textarea id="isi" name="isi" required></textarea><br><br>
+
+    <label for="gambar">Upload Gambar:</label><br>
+    <input type="file" id="gambar" name="gambar" accept="image/*" required><br><br>
+
+    <button type="submit">Posting Berita</button>
+  </form>
+
+  <p id="status"></p>
+
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+    import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAQEc-Id9673vKbOpo9WtYLXbjde21fCkE",
+      authDomain: "sma-1-contoh.firebaseapp.com",
+      projectId: "sma-1-contoh",
+      storageBucket: "sma-1-contoh.firebasestorage.app",
+      messagingSenderId: "343871913363",
+      appId: "1:343871913363:web:6249de249ab753b8b0fc66",
+      measurementId: "G-X6ZL5ETZ4N",
+      databaseURL: "https://sma-1-contoh-default-rtdb.firebaseio.com/"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const form = document.getElementById("formBerita");
+    const statusEl = document.getElementById("status");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const judul = document.getElementById("judul").value;
+      const isi = document.getElementById("isi").value;
+      const file = document.getElementById("gambar").files[0];
+
+      if (!file) {
+        statusEl.textContent = "Pilih gambar dulu!";
+        return;
+      }
+
+      statusEl.textContent = "Sedang upload gambar...";
+
+      // Upload ke Cloudinary
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "my_prest");
+
+      try {
+        const res = await fetch("https://api.cloudinary.com/v1_1/doxlp6bbz/image/upload", {
+          method: "POST",
+          body: formData
+        });
+
+        const data = await res.json();
+        const imageUrl = data.secure_url;
+
+        statusEl.textContent = "Gambar berhasil diupload, simpan berita...";
+
+        // Simpan ke Firebase Realtime Database
+        const beritaRef = ref(db, "berita");
+        const newBeritaRef = push(beritaRef);
+
+        await set(newBeritaRef, {
+          judul: judul,
+          isi: isi,
+          gambar: imageUrl,
+          waktu: new Date().toISOString()
+        });
+
+        statusEl.textContent = "Berita berhasil diposting!";
+        form.reset();
+
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = "Gagal upload berita!";
+      }
+    });
+  </script>
+</body>
+</html>

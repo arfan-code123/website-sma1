@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SMAN 1 Contoh</title>
+  <link rel="stylesheet" href="Css.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <img src="sma.png" alt="Logo SMA Negeri 1 Contoh" style="max-width: 150px;">
+    <h1>SMA NEGERI 1 CONTOH</h1>
+
+    <!-- Tombol Toggle -->
+    <button class="menu-toggle">☰</button>
+
+    <!-- Navigasi -->
+<nav>
+  <ul class="main-menu">
+    <li><a href="index.html">BERANDA</a></li>
+    <li class="has-sub">
+      <a href="#">PROFIL</a>
+      <ul class="submenu">
+        <li><a href="sejarah.html">Sejarah</a></li>
+        <li><a href="visi.html">Visi & Misi</a></li>
+      </ul>
+    </li>
+
+    <li class="has-sub">
+      <a href="#">AKADEMIK</a>
+      <ul class="submenu">
+        <li><a href="kelas.html">Kelas</a></li>
+        <li><a href="silabus.html">Silabus</a></li>
+        <li><a href="materi.html">Materi</a></li>
+        <li><a href="mapel.html">Mapel</a></li>
+      </ul>
+    </li>
+
+    <li class="has-sub">
+      <a href="#">MEDIA</a>
+      <ul class="submenu">
+        <li><a href="album.html">Album Foto</a></li>
+        <li><a href="mading.html">Mading</a></li>
+      </ul>
+    </li>
+
+    <li class="has-sub">
+      <a href="#">DATA</a>
+      <ul class="submenu">
+        <li><a href="guru.html">Data Guru</a></li>
+        <li><a href="tata.html">Tata Usaha</a></li>
+        <li><a href="siswa.html">Data Siswa</a></li>
+      </ul>
+    </li>
+
+    <li><a href="#kontak">KONTAK</a></li>
+  </ul>
+</nav>
+  </header>
+  
+    <section id="Materi" class="section">
+<h2>Mata Pelajaran</h2>
+<p>SMA Negeri 1 Contoh berdiri sejak tahun 1985 dan telah melahirkan lulusan-lulusan berprestasi di berbagai bidang. Sekolah kami menyediakan berbagai mata pelajaran sesuai dengan kurikulum nasional yang terbagi ke dalam kelompok wajib dan peminatan.</p>
+
+<h3>Mata Pelajaran Wajib</h3>
+<ul>
+  <li>Pendidikan Agama dan Budi Pekerti</li>
+  <li>Pendidikan Pancasila dan Kewarganegaraan</li>
+  <li>Bahasa Indonesia</li>
+  <li>Matematika</li>
+  <li>Sejarah Indonesia</li>
+  <li>Bahasa Inggris</li>
+  <li>Pendidikan Jasmani, Olahraga, dan Kesehatan</li>
+  <li>Prakarya dan Kewirausahaan</li>
+</ul>
+
+<h3>Mata Pelajaran Peminatan</h3>
+<h4>Matematika dan Ilmu Pengetahuan Alam (MIPA)</h4>
+<ul>
+  <li>Matematika</li>
+  <li>Biologi</li>
+  <li>Fisika</li>
+  <li>Kimia</li>
+</ul>
+
+<h4>Ilmu-Ilmu Sosial (IPS)</h4>
+<ul>
+  <li>Geografi</li>
+  <li>Sejarah</li>
+  <li>Sosiologi</li>
+  <li>Ekonomi</li>
+</ul>
+
+<h4>Bahasa dan Budaya</h4>
+<ul>
+  <li>Bahasa dan Sastra Indonesia</li>
+  <li>Bahasa dan Sastra Inggris</li>
+  <li>Bahasa Asing (contoh: Bahasa Jepang, Jerman, atau Arab)</li>
+  <li>Antropologi</li>
+</ul>
+<h3>Muatan Lokal dan Program Khusus</h3>
+<ul>
+  <li>Bahasa Daerah</li>
+  <li>TIK (Teknologi Informasi dan Komunikasi)</li>
+  <li>Program Kelas Internasional</li>
+</ul>
+  </section>
+  
+  <!-- Berita -->
+  <section id="berita" class="section">
+    <h2>Berita Terbaru</h2>
+    <div id="berita-list">
+      <!-- Berita otomatis dari Firebase -->
+    </div>
+    
+    <h2>Berita Lainnya</h2>
+    <div id="berita-lainnya"></div>
+  </section>
+  
+    <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 SMA Negeri 1 Contoh</p>
+  </footer>
+  
+    <!-- Lightbox overlay -->
+  <div id="lightbox" style="display:none; position:fixed; z-index:100; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.9); text-align:center;">
+    <span id="close-lightbox" style="position:absolute; top:20px; right:30px; color:white; font-size:40px; cursor:pointer;">&times;</span>
+    <img id="lightbox-img" style="max-width:90%; max-height:90%; margin-top:5%;">
+  </div>
+  
+  <!-- Panggil file JS -->
+<script type="module" src="firebase.js"></script>
+ <script src="script.js"></script>
+ 
+</body>
+</html>

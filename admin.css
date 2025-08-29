@@ -1,0 +1,126 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  min-height: 100vh;
+}
+
+header {
+  background: #4facfe;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+main {
+  background: #fff;
+  margin: 30px auto;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+h2 {
+  margin-bottom: 15px;
+  color: #333;
+  border-bottom: 2px solid #4facfe;
+  padding-bottom: 5px;
+}
+
+form label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: bold;
+  color: #555;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: #4facfe;
+  box-shadow: 0 0 5px rgba(79, 172, 254, 0.6);
+}
+
+form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+form button {
+  margin-top: 15px;
+  width: 100%;
+  padding: 12px;
+  background: #4facfe;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+form button:hover {
+  background: #00c6ff;
+}
+
+#preview {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+#preview h3 {
+  color: #4facfe;
+}
+
+/* Modal Edit Berita */
+#editModal {
+  position: fixed;
+  top: 5%;              /* mulai 5% dari atas layar */
+  left: 50%;
+  transform: translateX(-50%); /* center horizontal */
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  z-index: 1000;
+
+  width: 90%;           /* pas di HP */
+  max-width: 400px;     /* di laptop jangan terlalu lebar */
+  max-height: 90vh;     /* supaya tidak lebih dari tinggi layar */
+  overflow-y: auto;     /* bisa scroll isi */
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Responsive di layar kecil */
+@media (max-width: 600px) {
+  #editModal {
+    width: 71%;
+    max-width: 71%;
+    top: 20%;                     /* tetap mulai dari atas */
+    left: 80%;
+    transform: translateX(-50%); /* hanya horizontal center */
+  }
+}

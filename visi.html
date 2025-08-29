@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SMAN 1 Contoh</title>
+  <link rel="stylesheet" href="Css.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <img src="sma.png" alt="Logo SMA Negeri 1 Contoh" style="max-width: 150px;">
+    <h1>SMA NEGERI 1 CONTOH</h1>
+
+    <!-- Tombol Toggle -->
+    <button class="menu-toggle">☰</button>
+
+    <!-- Navigasi -->
+<nav>
+  <ul class="main-menu">
+    <li><a href="index.html">BERANDA</a></li>
+    <li><a href="#berita">BERITA TERBARU</a></li>
+
+    <li class="has-sub">
+      <a href="#">PROFIL</a>
+      <ul class="submenu">
+        <li><a href="sejarah.html">Sejarah</a></li>
+        <li><a href="visi.html">Visi & Misi</a></li>
+      </ul>
+    </li>
+
+    <li class="has-sub">
+      <a href="#">AKADEMIK</a>
+      <ul class="submenu">
+        <li><a href="#">Kelas</a></li>
+        <li><a href="#">Silabus</a></li>
+        <li><a href="#">Materi</a></li>
+        <li><a href="#">Mapel</a></li>
+      </ul>
+    </li>
+
+    <li class="has-sub">
+      <a href="#">MEDIA</a>
+      <ul class="submenu">
+        <li><a href="#">Album Foto</a></li>
+        <li><a href="#">Mading</a></li>
+      </ul>
+    </li>
+
+    <li class="has-sub">
+      <a href="#">DATA</a>
+      <ul class="submenu">
+        <li><a href="#">Data Guru</a></li>
+        <li><a href="#">Tata Usaha</a></li>
+        <li><a href="#">Data Siswa</a></li>
+      </ul>
+    </li>
+
+    <li><a href="#kontak">KONTAK</a></li>
+  </ul>
+</nav>
+  </header>
+  
+    <section id="Visi & Misi" class="section">
+    <h2>🏫 Visi SMA Negeri 1 Contoh</h2>
+    <p> “Menjadi sekolah unggulan yang berlandaskan nilai-nilai keimanan dan ketakwaan, berwawasan global, berprestasi dalam bidang akademik dan non-akademik, serta berkarakter luhur dalam menghadapi tantangan abad 21.”</p>
+  
+<h2>🎯 Misi SMA Negeri 1 Contoh</h2>
+
+<p>1. Menanamkan nilai-nilai spiritual dan moral dalam setiap aktivitas pembelajaran untuk membentuk insan yang beriman, bertakwa, dan berakhlak mulia. </p>
+
+
+<p>2. Menyelenggarakan pendidikan yang berkualitas, inovatif, dan berorientasi pada keunggulan akademik dan non-akademik, guna mencetak lulusan yang kompeten dan siap bersaing di tingkat nasional maupun internasional.</p>
+
+
+<p>3. Mengembangkan budaya belajar yang aktif, kreatif, kritis, dan kolaboratif melalui pembelajaran berbasis teknologi dan informasi.</p>
+
+
+<p>4. Menciptakan lingkungan sekolah yang aman, nyaman, bersih, dan kondusif, sebagai tempat tumbuh kembangnya potensi peserta didik secara optimal.</p>
+
+
+<p>5. Menumbuhkan semangat nasionalisme, cinta tanah air, dan kepedulian sosial melalui kegiatan intrakurikuler dan ekstrakurikuler.</p>
+
+
+<p>6. Mengembangkan potensi bakat dan minat peserta didik di bidang seni, olahraga, sains, dan kewirausahaan.</p>
+
+
+<p>7. Meningkatkan kompetensi tenaga pendidik dan kependidikan melalui pelatihan, workshop, dan kegiatan pengembangan profesional lainnya.</p>
+
+
+<p>8. Menjalin kemitraan yang harmonis dengan orang tua, masyarakat, dunia usaha, dan dunia industri, dalam rangka mendukung proses pendidikan yang berkelanjutan.</p>
+
+</section>
+
+  <!-- Berita -->
+  <section id="berita" class="section">
+    <h2>Berita Terbaru</h2>
+    <div id="berita-list">
+      <!-- Berita otomatis dari Firebase -->
+    </div>
+    
+    <h2>Berita Lainnya</h2>
+    <div id="berita-lainnya"></div>
+  </section>
+  
+    <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 SMA Negeri 1 Contoh</p>
+  </footer>
+  
+    <!-- Lightbox overlay -->
+  <div id="lightbox" style="display:none; position:fixed; z-index:100; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.9); text-align:center;">
+    <span id="close-lightbox" style="position:absolute; top:20px; right:30px; color:white; font-size:40px; cursor:pointer;">&times;</span>
+    <img id="lightbox-img" style="max-width:90%; max-height:90%; margin-top:5%;">
+  </div>
+  
+  <!-- Panggil file JS -->
+<script type="module" src="firebase.js"></script>
+ <script src="script.js"></script>
+ 
+</body>
+</html>
